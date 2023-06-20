@@ -34,8 +34,8 @@ This should return the ARP scanning results, which are updated based on your int
 
 # Noted Configuration Options
 
-The ARP Scanning interval is configured in `run_scan.sh` using the sleep command and it's default is 60 seconds. 
-The network addresses to scan are configured in `run_scan.sh` using the arp-scan argument, the default is the 192.168.1.0/24 address block. 
+- The ARP Scanning interval is configured in `run_scan.sh` using the sleep command and it's default is 60 seconds. 
+- The network addresses to scan are configured in `run_scan.sh` using the arp-scan argument, the default is the 192.168.1.0/24 address block. 
 
 
 # Conclusion
