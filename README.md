@@ -3,26 +3,26 @@ This application is a network monitoring tool that allows you to view the ARP (A
 
 
 # Features
-Adjustable intermittence ARP Scanning: Offers an intermittently refreshed view of your local network's ARP scanning results.
+- Adjustable intermittence ARP Scanning: Offers an intermittently refreshed view of your local network's ARP scanning results.
 
-HTTP Accessibility: Provides easy access to the scan results over HTTP on port 80, making it readily available for any device connected to the network.
+- HTTP Accessibility: Provides easy access to the scan results over HTTP on port 80, making it readily available for any device connected to the network.
 
-Compatibility: An ideal solution for devices that do not support traditional pinging methods over ICMP or TCP.
+- Compatibility: An ideal solution for devices that do not support traditional pinging methods over ICMP or TCP.
 
 
 # Setup
 Setting up the ARP Monitor is straightforward. Follow the steps below:
 
 Create a directory for the project and navigate into it:
-mkdir networkscanner && cd networkscanner
+`mkdir networkscanner && cd networkscanner`
 
 Load the Dockerfile, run_scan.sh, and nginx.conf files into the new directory. 
 
 Build the Docker image for the network scanner:
-docker build -t networkscanner .
+`docker build -t networkscanner .`
 
 Run the Docker container in the background with network host and necessary capabilities. It will restart automatically if it stops for any reason:
-docker run --restart=always --network=host -d --cap-add=NET_RAW --cap-add=NET_ADMIN networkscanner
+`docker run --restart=always --network=host -d --cap-add=NET_RAW --cap-add=NET_ADMIN networkscanner`
 
 
 # Testing
@@ -34,8 +34,8 @@ This should return the ARP scanning results, which are updated based on your int
 
 # Noted Configuration Options
 
-The ARP Scanning interval is configured in run_scan.sh using the sleep command and it's default is 60 seconds. 
-The network addresses to scan are configured in run_scan.sh using the arp-scan argument, the default is the 192.168.1.0/24 address block. 
+The ARP Scanning interval is configured in `run_scan.sh` using the sleep command and it's default is 60 seconds. 
+The network addresses to scan are configured in `run_scan.sh` using the arp-scan argument, the default is the 192.168.1.0/24 address block. 
 
 
 # Conclusion
