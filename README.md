@@ -29,7 +29,7 @@ docker run --restart=always --network=host -d --cap-add=NET_RAW --cap-add=NET_AD
 To test whether the ARP Monitor is running correctly, you can send a request to the local server. The following command retrieves the ARP scan results:
 curl http://localhost:80/
 
-This should return the ARP scanning results, which are updated based on your interval configured in nano run_scan.sh using the sleep command.
+This should return the ARP scanning results, which are updated based on your interval configured in run_scan.sh using the sleep command.
 
 
 # Noted Configuration Options
