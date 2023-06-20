@@ -1,10 +1,13 @@
 # ARP Monitor Via HTTP
 This application is a network monitoring tool that allows you to view the ARP (Address Resolution Protocol) scanning results of a local network over HTTP on port 80. This is especially useful for monitoring the uptime of devices that do not support traditional pinging methods over ICMP (Internet Control Message Protocol) or TCP (Transmission Control Protocol).
 
+
 # Features
--Adjustable intermittence ARP Scanning: Offers an intermittently refreshed view of your local network's ARP scanning results.
--HTTP Accessibility: Provides easy access to the scan results over HTTP on port 80, making it readily available for any device connected to the network.
--Compatibility: An ideal solution for devices that do not support traditional pinging methods over ICMP or TCP.
+Adjustable intermittence ARP Scanning: Offers an intermittently refreshed view of your local network's ARP scanning results.
+
+HTTP Accessibility: Provides easy access to the scan results over HTTP on port 80, making it readily available for any device connected to the network.
+
+Compatibility: An ideal solution for devices that do not support traditional pinging methods over ICMP or TCP.
 
 
 # Setup
