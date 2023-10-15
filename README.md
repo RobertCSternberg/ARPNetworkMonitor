@@ -29,6 +29,7 @@ Load the Dockerfile, scan.sh, entry.sh, and nginx.conf files into the new direct
 Build the Docker image for the network scanner:  
 `docker build -t networkscanner .`
 
+## Usage
 Run the Docker container in the background with network host and necessary capabilities. It will restart automatically if it stops for any reason:  
 `docker run --restart=always --network=host -d --cap-add=NET_RAW networkscanner`
 
