@@ -6,6 +6,8 @@ Changes done in this fork:
 - No need for NET_ADMIN capability by moving to port 8080
 - Possibility to scan more than one network at once
 
+Please note that while ading these features no particular importance was given to validating the input parameters. This container is meant to be run on a trusted and secured host.
+
 # ARP Monitor Via HTTP
 This application is a network monitoring tool that allows you to view the ARP (Address Resolution Protocol) scanning results of a local network over HTTP on port 8080. This is especially useful for monitoring the uptime of devices that do not support traditional pinging methods over ICMP (Internet Control Message Protocol) or TCP (Transmission Control Protocol).
 
