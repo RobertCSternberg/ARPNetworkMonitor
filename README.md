@@ -31,6 +31,9 @@ Load the Dockerfile, scan.sh, entry.sh, and nginx.conf files into the new direct
 Build the Docker image for the network scanner:  
 `docker build -t networkscanner .`
 
+## Docker container
+I encurage you to build the container yourself. If you d not want or cannot do so, there is a docker container (only x64) available at https://hub.docker.com/r/alestrix/arpscanweb
+
 ## Usage
 Run the Docker container in the background with network host and necessary capabilities. It will restart automatically if it stops for any reason:  
 `docker run --restart=always --network=host -d --cap-add=NET_RAW networkscanner`
@@ -47,15 +50,11 @@ If you want to scan more than one network at once, you can repeat the two-touple
 Please note that this will not work:  
 ~~`docker run --restart=always --network=host -d --cap-add=NET_RAW networkscanner 10.20.30.128/25 192.168.10.0/24`~~
 
-
 ## Testing
 To test whether the ARP Monitor is running correctly, you can send a request to the local server. The following command retrieves the ARP scan results:
 curl http://localhost:8080/
 
 This should return the ARP scanning results, which are updated based on your interval configured in run_scan.sh using the sleep command.
-
-## Docker container
-There is a docker container (only x64) available at https://hub.docker.com/r/alestrix/arpscanweb
 
 ## Noted Configuration Options
 - The ARP Scanning interval is configured in `entry.sh` using the sleep command and its default is 60 seconds.
