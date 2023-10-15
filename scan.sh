@@ -3,9 +3,15 @@ echo "<html><head><title>Arp Scan Results</title></head><body><h1>Arp Scan Resul
 echo "<p>Last updated: $(date '+%d.%B %Y %H:%M:%S %Z')</p>"
 echo "<pre>"
 
+BASECOMMAND="arp-scan"
+if [ "$1" = "--parsable" ]; then
+  BASECOMMAND="arp-scan -x -D -F ip:\${IP};mac:\${mac};rtt:\${rtt};vendor:\${vendor}"
+  shift
+fi
+
 while [ "$1" != "" ]
 do
-  COMMAND="arp-scan $1"
+  COMMAND="$BASECOMMAND $1"
   if [ "$2" != "" ]; then
     COMMAND="$COMMAND -I $2"
     shift
