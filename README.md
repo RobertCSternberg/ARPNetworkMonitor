@@ -32,7 +32,9 @@ Build the Docker image for the network scanner:
 `docker build -t networkscanner .`
 
 ## Docker container
-I encurage you to build the container yourself. If you d not want or cannot do so, there is a docker container (only x64) available at https://hub.docker.com/r/alestrix/arpscanweb
+I encourage you to build the container yourself. If you do not want or cannot do so, there is a ready-made docker container (only x64) available at https://hub.docker.com/r/alestrix/arpscanweb
+
+Please note that currently the `latest` tag points to a build of the master branch.
 
 ## Usage
 Run the Docker container in the background with network host and necessary capabilities. It will restart automatically if it stops for any reason:  
