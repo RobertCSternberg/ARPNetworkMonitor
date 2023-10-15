@@ -1,4 +1,4 @@
-# ARP Monitor Via HTTP
+# About this Fork
 This is a fork of [Robert C Sternberg's work](https://github.com/RobertCSternberg/ARPMonitorViaHTTP), all praise goes to him!
 
 Changes done in this fork:
@@ -6,10 +6,11 @@ Changes done in this fork:
 - No need for NET_ADMIN capability by moving to port 8080
 - Possibility to scan more than one network at once
 
+# ARP Monitor Via HTTP
 This application is a network monitoring tool that allows you to view the ARP (Address Resolution Protocol) scanning results of a local network over HTTP on port 80. This is especially useful for monitoring the uptime of devices that do not support traditional pinging methods over ICMP (Internet Control Message Protocol) or TCP (Transmission Control Protocol).
 
 
-# Features
+## Features
 - Adjustable intermittence ARP Scanning: Offers an intermittently refreshed view of your local network's ARP scanning results.
 
 - HTTP Accessibility: Provides easy access to the scan results over HTTP on port 8080, making it readily available for any device connected to the network.
@@ -17,7 +18,7 @@ This application is a network monitoring tool that allows you to view the ARP (A
 - Compatibility: An ideal solution for devices that do not support traditional pinging methods over ICMP or TCP.
 
 
-# Setup
+## Setup
 Setting up the ARP Monitor is straightforward. Follow the steps below:
 
 Create a directory for the project and navigate into it:  
@@ -44,7 +45,7 @@ Please note that this will not work:
 ~~`docker run --restart=always --network=host -d --cap-add=NET_RAW networkscanner 10.20.30.128/25 192.168.10.0/24`~~
 
 
-# Testing
+## Testing
 To test whether the ARP Monitor is running correctly, you can send a request to the local server. The following command retrieves the ARP scan results:
 curl http://localhost:8080/
 
@@ -53,7 +54,8 @@ This should return the ARP scanning results, which are updated based on your int
 
 # Noted Configuration Options
 
-- The ARP Scanning interval is configured in `entry.sh` using the sleep command and its default is 60 seconds. 
+- The ARP Scanning interval is configured in `entry.sh` using the sleep command and its default is 60 seconds.
+- The default scan target is configured in `Dockerfile`.
 
 # Conclusion
 The ARP Monitor provides an efficient and straightforward method to monitor devices in a network, specifically those that do not support traditional pinging methods. By running it inside a Docker container, it is easy to deploy and manage across various environments.
