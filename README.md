@@ -1,4 +1,6 @@
 # ARP Monitor Via HTTP
+This is a fork of [Robert C Sternberg's work](https://github.com/RobertCSternberg/ARPMonitorViaHTTP), all praise goes to him!
+
 This application is a network monitoring tool that allows you to view the ARP (Address Resolution Protocol) scanning results of a local network over HTTP on port 80. This is especially useful for monitoring the uptime of devices that do not support traditional pinging methods over ICMP (Internet Control Message Protocol) or TCP (Transmission Control Protocol).
 
 
