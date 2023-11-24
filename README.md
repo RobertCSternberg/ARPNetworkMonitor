@@ -19,6 +19,10 @@ This application is a network monitoring tool that allows you to view the ARP (A
 
 - Compatibility: An ideal solution for devices that do not support traditional pinging methods over ICMP or TCP.
 
+- Can scan multiple networks
+
+- Adjustable frequency
+
 
 ## Setup
 Setting up the ARP Monitor is straightforward. Follow the steps below:
@@ -32,12 +36,10 @@ Build the Docker image for the network scanner:
 `docker build -t networkscanner .`
 
 ## Docker container
-I encourage you to build the container yourself. If you do not want or cannot do so, there is a ready-made docker container (only x64) available at https://hub.docker.com/r/alestrix/arpscanweb
-
-Please note that currently the `latest` tag points to a build of the master branch.
+I encourage you to build the container yourself. If you do not want or cannot do so, there is a ready-made docker container (only x64, no arm, no arm64, no mips) available at https://hub.docker.com/r/alestrix/arpscanweb
 
 ## Usage
-Run the Docker container in the background with network host and necessary capabilities. It will restart automatically if it stops for any reason:  
+Run the Docker container in the background with network host and necessary capabilities. It should restart automatically if it stops for any reason:  
 `docker run --restart=always --network=host -d --cap-add=NET_RAW networkscanner`
 
 The scan defaults to the network 192.168.1.0/24. If you want to change this, add the network as parameter:  
@@ -52,15 +54,53 @@ If you want to scan more than one network at once, you can repeat the two-touple
 Please note that this will not work:  
 ~~`docker run --restart=always --network=host -d --cap-add=NET_RAW networkscanner 10.20.30.128/25 192.168.10.0/24`~~
 
+Network scanning default to once every minute. If you want a different frequency, use the `--time` option. tHE `--time` parameter needs to be the first parameter:  
+`docker run --restart=always --network=host -d --cap-add=NET_RAW networkscanner --time 30 10.20.30.128/25 enp3s0 192.168.10.0/24 wlp1s0`
+
+If you want the output in JSON format, add the `--json` parameter after the (optional) `--time` parameter:  
+`docker run --restart=always --network=host -d --cap-add=NET_RAW networkscanner --json 10.20.30.128/25 enp3s0 192.168.10.0/24 wlp1s0`  
+or  
+`docker run --restart=always --network=host -d --cap-add=NET_RAW networkscanner --time 30 --json 10.20.30.128/25 enp3s0 192.168.10.0/24 wlp1s0`
+
+JSON reults will look like this:
+```
+$ curl --silent http://localhost:8080 | jq
+{
+  "date": "24.November 2023 22:40:43 UTC",
+  "results": [
+    {
+      "ip": "192.168.6.1",
+      "mac": "f0:9f:c2:15:cd:d4",
+      "rtt": "1.010",
+      "vendor": "Ubiquiti Networks Inc."
+    },
+    {
+      "ip": "192.168.7.62",
+      "mac": "dc:a6:32:01:93:46",
+      "rtt": "1.124",
+      "vendor": "Raspberry Pi Trading Ltd"
+    },
+    {
+      "ip": "192.168.7.62",
+      "mac": "dc:a6:32:01:93:47",
+      "rtt": "46.930",
+      "vendor": "Raspberry Pi Trading Ltd"
+    }
+  ]
+}
+
+$ curl --silent http://localhost:8080 | jq ".results[] | select(.mac==\"dc:a6:32:01:93:47\").ip"
+"192.168.7.62"
+```
+
 ## Testing
 To test whether the ARP Monitor is running correctly, you can send a request to the local server. The following command retrieves the ARP scan results:
 curl http://localhost:8080/
 
-This should return the ARP scanning results, which are updated based on your interval configured in run_scan.sh using the sleep command.
+This should return the ARP scanning results, which are updated every 60 seconds by default or whatever you configured via the `--time` parameter.
 
 ## Noted Configuration Options
-- The ARP Scanning interval is configured in `entry.sh` using the sleep command and its default is 60 seconds.
-- The default scan target is configured in `Dockerfile`.
+- The default scan target is configured in `Dockerfile` as `CMD`.
 
 # Conclusion
 The ARP Monitor provides an efficient and straightforward method to monitor devices in a network, specifically those that do not support traditional pinging methods. By running it inside a Docker container, it is easy to deploy and manage across various environments.
