@@ -74,15 +74,15 @@ $ curl --silent http://localhost:8080 | jq
       "vendor": "Ubiquiti Networks Inc."
     },
     {
-      "ip": "192.168.7.62",
-      "mac": "dc:a6:32:01:93:46",
-      "rtt": "1.124",
-      "vendor": "Raspberry Pi Trading Ltd"
+      "ip": "192.168.6.120",
+      "mac": "74:eb:80:66:3f:12",
+      "rtt": "446.083",
+      "vendor": "Samsung Electronics Co.,Ltd"
     },
     {
       "ip": "192.168.7.62",
-      "mac": "dc:a6:32:01:93:47",
-      "rtt": "46.930",
+      "mac": "dc:a6:32:01:93:46",
+      "rtt": "1.124",
       "vendor": "Raspberry Pi Trading Ltd"
     }
   ]
