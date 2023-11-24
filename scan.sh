@@ -1,8 +1,8 @@
 #!/bin/sh
 
 JSON=false
-BASECOMMAND="arp-scan"
-DATE="$(date '+%d.%B %Y %H:%M:%S %Z')"
+BASECOMMAqND="arp-scan"
+DATE="$(+%Y-%m-%dT%H:%M:%SZ%z)"
 
 if [ "$1" = "--json" ]; then
   JSON=true
