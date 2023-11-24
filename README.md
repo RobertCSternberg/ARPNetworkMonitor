@@ -97,7 +97,7 @@ To troubleshoot the log output might be handy:
 
 ## Testing
 To test whether the ARP Monitor is running correctly, you can send a request to the local server. The following command retrieves the ARP scan results:
-`curl http://localhost:8080/``
+`curl http://localhost:8080/`
 
 This should return the ARP scanning results, which are updated every 60 seconds by default or whatever you configured via the `--time` parameter.
 
