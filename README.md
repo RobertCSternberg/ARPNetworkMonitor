@@ -65,7 +65,7 @@ JSON reults will look like this:
 ```
 $ curl --silent http://localhost:8080 | jq
 {
-  "date": "24.November 2023 22:40:43 UTC",
+  "date": "2023-11-24T23:43:15Z+0000",
   "results": [
     {
       "ip": "192.168.6.1",

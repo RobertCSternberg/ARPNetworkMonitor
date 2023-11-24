@@ -2,7 +2,7 @@
 
 JSON=false
 BASECOMMAqND="arp-scan"
-DATE="$(+%Y-%m-%dT%H:%M:%SZ%z)"
+DATE="$(date '+%Y-%m-%dT%H:%M:%SZ%z')"
 
 if [ "$1" = "--json" ]; then
   JSON=true
