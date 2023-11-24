@@ -3,22 +3,23 @@ This is a fork of [Robert C Sternberg's work](https://github.com/RobertCSternber
 
 Changes done in this fork:
 - Possibility to scan more than one network at once
-- Parametrisation of target netwqorks, interfaces, and scan frequency via docker parameters
+- Parametrisation of target networks, interfaces, and scan frequency via docker parameters
 - No need for NET_ADMIN capability by moving to port 8080
 - Option to output in JSON format
 
-Please note that while adding these features no particular importance was given to validating the input parameters. This container is meant to be run on a trusted and secured host with sanitized inputs.
+Please note that while adding these features no particular importance was given to validating the input parameters. This script is meant to be run on a trusted and secured host with sanitized inputs.
 
 # ARP Monitor Via HTTP
 This application is a network monitoring tool that allows you to view the ARP (Address Resolution Protocol) scanning results of a local network over HTTP on port 8080. This is especially useful for monitoring the uptime of devices that do not support traditional pinging methods over ICMP (Internet Control Message Protocol) or TCP (Transmission Control Protocol).
 
 
 ## Features
-- Adjustable intermittence ARP Scanning: Offers an intermittently refreshed view of your local network's ARP scanning results.
+- Offers a frequently refreshed view of your local networks' ARP scanning results.
 - HTTP Accessibility: Provides easy access to the scan results over HTTP on port 8080, making it readily available for any device connected to the network.
-- Compatibility: An ideal solution for devices that do not support traditional pinging methods over ICMP or TCP.
+- Compatibility: An ideal solution for target devices that do not support traditional pinging methods over ICMP or TCP.
 - Can scan multiple networks
 - Adjustable frequency
+- Optional JSON output
 
 ## Setup
 Setting up the ARP Monitor is straightforward. Follow the steps below:
@@ -28,17 +29,19 @@ Create a directory for the project and navigate into it:
 
 Load the Dockerfile, scan.sh, entry.sh, and nginx.conf files into the new directory. 
 
+If you want to change the default, edit the `CMD` line in the `Dockerfile`.
+
 Build the Docker image for the network scanner:  
 `docker build -t networkscanner .`
 
 ## Docker container
-I encourage you to build the container yourself. If you do not want or cannot do so, there is a ready-made docker container (only x64, no arm, no arm64, no mips) available at https://hub.docker.com/r/alestrix/arpscanweb
+I encourage you to build the container yourself. If you do not want to or cannot do so, there is a ready-made docker container (only x64, no arm, no arm64, no mips) available at https://hub.docker.com/r/alestrix/arpscanweb
 
 ## Usage
-Run the Docker container in the background with network host and necessary capabilities. It should restart automatically if it stops for any reason:  
+Run the Docker container in the background with network host and necessary capabilities and default target network (192.168.1.0/24). It should restart automatically if it stops for any reason:  
 `docker run --restart=always --network=host -d --cap-add=NET_RAW networkscanner`
 
-The scan defaults to the network 192.168.1.0/24. If you want to change this, add the network as parameter:  
+If you want to change the default target network, add the network in CIDR format as parameter:  
 `docker run --restart=always --network=host -d --cap-add=NET_RAW networkscanner 10.20.30.0/24`
 
 If your system has multiple interfaces you can pass the interface name too:  
@@ -88,6 +91,9 @@ $ curl --silent http://localhost:8080 | jq
 $ curl --silent http://localhost:8080 | jq ".results[] | select(.mac==\"dc:a6:32:01:93:47\").ip"
 "192.168.7.62"
 ```
+
+To troubleshoot the log output might be handy:  
+`docker logs networkscanner`
 
 ## Testing
 To test whether the ARP Monitor is running correctly, you can send a request to the local server. The following command retrieves the ARP scan results:
