@@ -95,6 +95,9 @@ $ curl --silent http://localhost:8080 | jq -r '.results[] | select(.mac=="dc:a6:
 To troubleshoot the log output might be handy:  
 `docker logs networkscanner`
 
+You can kill and delete the docker container using  
+`docker rm -f networkscanner`
+
 ## Testing
 To test whether the ARP Monitor is running correctly, you can send a request to the local server. The following command retrieves the ARP scan results:
 `curl http://localhost:8080/`
