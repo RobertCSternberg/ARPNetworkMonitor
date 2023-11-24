@@ -88,8 +88,8 @@ $ curl --silent http://localhost:8080 | jq
   ]
 }
 
-$ curl --silent http://localhost:8080 | jq '.results[] | select(.mac=="dc:a6:32:01:93:46").ip'
-"192.168.7.62"
+$ curl --silent http://localhost:8080 | jq -r '.results[] | select(.mac=="dc:a6:32:01:93:46").ip'
+192.168.7.62
 ```
 
 To troubleshoot the log output might be handy:  
