@@ -97,12 +97,13 @@ To troubleshoot the log output might be handy:
 
 ## Testing
 To test whether the ARP Monitor is running correctly, you can send a request to the local server. The following command retrieves the ARP scan results:
-curl http://localhost:8080/
+`curl http://localhost:8080/``
 
 This should return the ARP scanning results, which are updated every 60 seconds by default or whatever you configured via the `--time` parameter.
 
 ## Noted Configuration Options
 - The default scan target is configured in `Dockerfile` as `CMD`.
+- Everything can be set when initially starting the container with `docker run`.
 
 # Conclusion
 The ARP Monitor provides an efficient and straightforward method to monitor devices in a network, specifically those that do not support traditional pinging methods. By running it inside a Docker container, it is easy to deploy and manage across various environments.
