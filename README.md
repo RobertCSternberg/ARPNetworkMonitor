@@ -10,7 +10,7 @@ Please note no particular importance was given to validating the input parameter
 - Can scan multiple networks
 - Adjustable frequency
 - Optional JSON output
-- - Possibility to scan more than one network at once
+- Possibility to scan more than one network at once
 - Parametrisation of target networks, interfaces, and scan frequency via docker parameters
 - No need for NET_ADMIN capability by moving to port 8080
 
