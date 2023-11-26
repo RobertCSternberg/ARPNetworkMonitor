@@ -1,17 +1,7 @@
-# About this Fork
-This is a fork of [Robert C Sternberg's work](https://github.com/RobertCSternberg/ARPMonitorViaHTTP), all praise goes to him!
-
-Changes done in this fork:
-- Possibility to scan more than one network at once
-- Parametrisation of target networks, interfaces, and scan frequency via docker parameters
-- No need for NET_ADMIN capability by moving to port 8080
-- Option to output in JSON format
-
-Please note that while adding these features no particular importance was given to validating the input parameters. This script is meant to be run on a trusted and secured host with sanitized inputs.
-
 # ARP Monitor Via HTTP
 This application is a network monitoring tool that allows you to view the ARP (Address Resolution Protocol) scanning results of a local network over HTTP on port 8080. This is especially useful for monitoring the uptime of devices that do not support traditional pinging methods over ICMP (Internet Control Message Protocol) or TCP (Transmission Control Protocol).
 
+Please note no particular importance was given to validating the input parameters. This script is meant to be run on a trusted and secured host with sanitized inputs.
 
 ## Features
 - Offers a frequently refreshed view of your local networks' ARP scanning results.
@@ -20,6 +10,9 @@ This application is a network monitoring tool that allows you to view the ARP (A
 - Can scan multiple networks
 - Adjustable frequency
 - Optional JSON output
+- - Possibility to scan more than one network at once
+- Parametrisation of target networks, interfaces, and scan frequency via docker parameters
+- No need for NET_ADMIN capability by moving to port 8080
 
 ## Setup
 Setting up the ARP Monitor is straightforward. Follow the steps below:
