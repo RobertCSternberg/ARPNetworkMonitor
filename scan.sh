@@ -1,12 +1,12 @@
 #!/bin/sh
 
 JSON=false
-BASECOMMAqND="arp-scan"
+BASECOMMAND="arp-scan"
 DATE="$(date '+%Y-%m-%dT%H:%M:%SZ%z')"
 
 if [ "$1" = "--json" ]; then
   JSON=true
-  BASECOMMAND="arp-scan -x -D -F \{\"ip\":\"\${IP}\",\"mac\":\"\${mac}\",\"rtt\":\"\${rtt}\",\"vendor\":\"\${vendor}\"\}"
+  BASECOMMAND="${BASECOMMAND} -x -D -F \{\"ip\":\"\${IP}\",\"mac\":\"\${mac}\",\"rtt\":\"\${rtt}\",\"vendor\":\"\${vendor}\"\}"
   shift
 fi
 
