@@ -43,10 +43,10 @@ If your system has multiple interfaces you can pass the interface name too:
 If you want to scan more than one network at once, you can repeat the two-touples:  
 `docker run --restart=always --network=host -d --cap-add=NET_RAW networkscanner 10.20.30.128/25 enp3s0 192.168.10.0/24 wlp1s0`
 
-Please note that this will not work as you will always need a two-touple when scanning multiple networks:  
+Please note that the following will not work as you will always need a two-touple when scanning multiple networks:  
 ~~`docker run --restart=always --network=host -d --cap-add=NET_RAW networkscanner 10.20.30.128/25 192.168.10.0/24`~~
 
-Network scanning default to once every minute. If you want a different frequency, use the `--time` option. tHE `--time` parameter needs to be the first parameter:  
+Network scanning default to once every minute. If you want a different frequency, use the `--time` option. The `--time` parameter needs to be the first parameter:  
 `docker run --restart=always --network=host -d --cap-add=NET_RAW networkscanner --time 30 10.20.30.128/25 enp3s0 192.168.10.0/24 wlp1s0`
 
 If you want the output in JSON format, add the `--json` parameter after the (optional) `--time` parameter:  
