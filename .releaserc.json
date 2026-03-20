@@ -1,0 +1,46 @@
+{
+  "branches": ["main"],
+  "tagFormat": "v${version}",
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    [
+        "@semantic-release/file",
+        {
+            "files": ["VERSION"],
+            "replace": "${nextRelease.version}"
+        }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": ["VERSION", "CHANGELOG.md"],
+        "message": "chore(release): ${nextRelease.version} [skip ci]"
+      }
+    ],
+    "@semantic-release/github"
+  ],
+  "preset": "angular",
+  "presetConfig": {
+    "types": [
+      {"type": "feat", "section": "Features"},
+      {"type": "fix", "section": "Bug Fixes"},
+      {"type": "chore", "section": "Chores"},
+      {"type": "docs", "section": "Documentation"},
+      {"type": "style", "hidden": true},
+      {"type": "refactor", "hidden": true},
+      {"type": "perf", "hidden": true},
+      {"type": "test", "hidden": true}
+    ]
+  },
+  "releaseRules": [
+    { "type": "fix", "release": "patch" },
+    { "type": "chore", "release": "patch" },
+    { "type": "docs", "release": "patch" },
+    { "type": "refactor", "release": "patch"},
+    { "type": "feat", "release": "minor" },
+    { "type": "break", "release": "major" },
+    { "scope": "deps", "release": "patch" }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "extends": ["config:base"],
+  "enabledManagers": ["dockerfile"],
+  "docker": {
+    "fileMatch": ["^Dockerfile$"],
+    "pinDigests": true,
+    "enabled": true
+  },
+  "regexManagers": [
+    {
+      "fileMatch": ["^Dockerfile$"],
+      "matchStrings": [
+        "apk add --no-cache (?<depName>arp-scan)(?:=(?<currentValue>[^\\s]+))?"
+      ],
+      "depNameTemplate": "$depName",
+      "datasourceTemplate": "apk",
+      "versioningTemplate": "semver"
+    }
+  ],
+  "packageRules": [
+    {
+      "managers": ["dockerfile"],
+      "matchPackageNames": ["nginx"],
+      "groupName": "docker base image updates",
+      "enabled": true,
+      "schedule": ["at any time"],
+      "matchUpdateTypes": ["digest", "patch", "minor"],
+      "automerge": true
+    },
+    {
+      "managers": ["regex"],
+      "matchPackageNames": ["arp-scan"],
+      "groupName": "apk package updates",
+      "enabled": true,
+      "schedule": ["at any time"],
+      "matchUpdateTypes": ["digest", "patch", "minor"],
+      "automerge": true
+    }
+  ],
+  "rangeStrategy": "pin",
+  "semanticCommits": "enabled",
+  "semanticCommitType": "chore",
+  "semanticCommitScope": "deps"
+}
